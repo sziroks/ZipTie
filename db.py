@@ -30,5 +30,3 @@ class DBConnector(metaclass=SingletonMeta):
     @staticmethod
     def build_db_url() -> str:
         return f"{DB_URL_PREFIX}{os.environ.get(ENV_DB_USER)}:{os.environ.get(ENV_DB_PASS)}@{DB_HOST}/{DB_NAME}"
-
-

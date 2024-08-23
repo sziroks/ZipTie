@@ -24,28 +24,8 @@ class CrudHandler:
         new_row = model(**params)
         self.session.add(new_row)
         self.session.commit()
+        return True
 
     def select_joined(self):
         books_and_users = self.session.query(Book).options(joinedload(Book.owner)).all()
         return books_and_users
-
-
-from db import DBConnector
-from models.books import Book
-from models.users import User
-
-db = DBConnector()
-print(db.build_db_url())
-ch = CrudHandler(db.get_session())
-
-new_user = {
-    "name": "Tomek",
-    "email": "test2@test.com",
-    "age": 27,
-}
-new_book = {
-    "title": "Test Book13",
-    "description": "This is a test book 13.",
-    "id_user": 4,
-}
-ch.insert(Book, new_book)
