@@ -4,6 +4,10 @@ from db import DBConnector
 
 
 class User(DBConnector.Base):
+    """
+    Database table *users* instance model. Initializes the table columns and creates relationships.
+    """
+
     __tablename__ = "users"
 
     id_user = Column(Integer, primary_key=True, index=True, autoincrement=True)
@@ -17,4 +21,4 @@ class User(DBConnector.Base):
         return f"User({self.id_user}, {self.name}, {self.email}, {self.age})"
 
     def stringify(self):
-        return "User"
+        return self.__class__.__name__

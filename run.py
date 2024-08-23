@@ -1,6 +1,9 @@
 from server import Server
 
 def main():
+    """
+    Entrypoint to application. It starts the server.
+    """
     try:
         server = Server()
         server.start_server()
