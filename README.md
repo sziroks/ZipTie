@@ -34,6 +34,9 @@ On top of that you should have defined 2 environment variables:
 - **DB_USER** containing username for database connection
 - **DB_PASS** containing password for database connection
 
+# Solution
+I've decided to go with users and books, like in a library. Each user can have multiple books, but each book can have only 1 user. This was my initial setting for the API.
+
 ## Database tables
 1. **users** - table containing users:
     - id_user - primary key
@@ -54,3 +57,47 @@ To handle each table I've created models:
 I've handled 2 CRUD operations:
 - create - creates a new user or book record
 - read - reads a book record with it's user (join)
+
+## API
+I have implemented 3 endpoints:
+1. POST /create-user: Creates a new user. Requires body parameters:
+    - name: str
+    - age: None | int
+    - email: str
+    
+    Returns status codes:
+    - 201 if successfull
+    - 422 if bad request
+    - 500 if server error
+2. POST /create-book: Creates a new book. Requires body parameters:
+    - title: str
+    - id_user: int
+    - description: None | str
+
+    Returns status codes:
+    - 201 if successfull
+    - 422 if bad request
+    - 500 if server error
+3. GET /books-and-users: Retrieves a list of books and their owners (users). Requires body parameters:
+    - page: int
+
+    Returns status codes:
+    - 200 if successfull
+    - 422 if bad request
+    - 500 if server error
+
+
+## Things to change
+This code has some things that I'd personally change. Firstly some proper exception handling should be done. For now I added only key exceptions, to not spend much time, everything else is just a simple
+```python
+try:
+    # some code
+except Exception
+    # some code
+```
+
+It is not optimal, because ```Exception``` has wide scope. 
+
+The second thing I'd change if I had more free time is proper config file. For now things like database url are in consts, whereas I belive that it should be done in configuration file. It allows for simpler changes.
+
+The last thing that is to change is to add logger. For now there is no logger to this API (except default uvicorn logger). Adding custom logger would allow for easier debuging and real time information about application state and request-response operations.
