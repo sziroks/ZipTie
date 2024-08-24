@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import sessionmaker as session
 from sqlalchemy.orm.decl_api import DeclarativeMeta
 import os
+from typing import List
 from consts import (
     DB_HOST,
     DB_NAME,
@@ -27,6 +28,13 @@ class DBConnector(metaclass=SingletonMeta):
     def get_session(self) -> session:
         return self.SessionLocal()
 
-    @staticmethod
-    def build_db_url() -> str:
+    def build_db_url(self) -> str:
+        self.check_env_variables([ENV_DB_USER, ENV_DB_PASS])
         return f"{DB_URL_PREFIX}{os.environ.get(ENV_DB_USER)}:{os.environ.get(ENV_DB_PASS)}@{DB_HOST}/{DB_NAME}"
+    
+    @staticmethod
+    def check_env_variables(env_variables: List[str]):
+        for env_var in env_variables:
+            if not os.environ.get(env_var):
+                raise ValueError(f"Missing environment variable: {env_var}")
+

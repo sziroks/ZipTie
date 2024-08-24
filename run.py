@@ -1,5 +1,3 @@
-from traceback import print_exc
-
 from server import Server
 
 
@@ -23,7 +21,6 @@ def main() -> None:
         print("Server stopping")
     except Exception as e:
         print(f"Unhandled exception occurred: {e}")
-        print_exc()
     finally:
         print("Server stopped")
 
