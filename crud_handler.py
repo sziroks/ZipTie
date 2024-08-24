@@ -4,7 +4,7 @@ from typing import Union
 
 from models.books import Book
 from models.users import User
-from consts import TABLE_COLUMNS
+from consts import TABLE_COLUMNS, ROWS_PER_PAGE
 
 
 class CrudHandler:
@@ -26,6 +26,13 @@ class CrudHandler:
         self.session.commit()
         return True
 
-    def select_joined(self):
-        books_and_users = self.session.query(Book).options(joinedload(Book.owner)).all()
+    def select_joined(self, page: int):
+        offset = (page - 1) * ROWS_PER_PAGE
+        books_and_users = (
+            self.session.query(Book)
+            .options(joinedload(Book.owner))
+            .offset(offset)
+            .limit(ROWS_PER_PAGE)
+            .all()
+        )
         return books_and_users

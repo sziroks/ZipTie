@@ -9,3 +9,5 @@ TABLE_COLUMNS = {
     "User": ["name", "email", "age"],
     "Book": ["title", "id_user", "description"],
 }
+
+ROWS_PER_PAGE = 10

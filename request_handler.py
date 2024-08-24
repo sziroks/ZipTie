@@ -15,5 +15,5 @@ class RequestHandler:
             return self.crud.insert(User, params.model_dump())
         return self.crud.insert(Book, params.model_dump())
     
-    def get_books_and_users(self) -> bool:
-        return self.crud.select_joined()
+    def get_books_and_users(self, page) -> bool:
+        return self.crud.select_joined(page)

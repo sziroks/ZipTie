@@ -1,8 +1,6 @@
 # ZipTie
 
 ## TODO
-1. pagination
-2. response model
 3. docstrings
 
 ## Task Description
