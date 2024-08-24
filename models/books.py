@@ -4,10 +4,6 @@ from db import DBConnector
 
 
 class Book(DBConnector.Base):
-    """
-    Database table *books* instance model. Initializes the table columns and creates relationships.
-    """
-
     __tablename__ = "books"
 
     id_book = Column(Integer, primary_key=True, index=True, autoincrement=True)

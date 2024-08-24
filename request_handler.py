@@ -5,15 +5,17 @@ from api_models import BookModel, UserModel
 from models.books import Book
 from models.users import User
 
+
 class RequestHandler:
     def __init__(self) -> None:
-        self.db = DBConnector()
-        self.crud = CrudHandler(self.db.get_session())
+        self.db: DBConnector = DBConnector()
+        self.crud: CrudHandler = CrudHandler(self.db.get_session())
 
-    def create_entry(self, params: Union[BookModel, UserModel]) -> bool:
+    def create_entry(self, params: Union[BookModel, UserModel]) -> None:
         if isinstance(params, UserModel):
-            return self.crud.insert(User, params.model_dump())
-        return self.crud.insert(Book, params.model_dump())
-    
-    def get_books_and_users(self, page) -> bool:
+            self.crud.create_entry(User, params.model_dump())
+            return
+        self.crud.create_entry(Book, params.model_dump())
+
+    def get_books_and_users(self, page) -> list:
         return self.crud.select_joined(page)

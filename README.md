@@ -1,8 +1,5 @@
 # ZipTie
 
-## TODO
-3. docstrings
-
 ## Task Description
 The goal of this task is to create a fully working API solution based on Python FastAPI and a
 MySQL database.
