@@ -43,6 +43,7 @@ class RequestHandler:
                 'book_title': str,
                 'user_id': int,
                 'user_name': str
+                'owner': associated user entry
             }
         """
         return self.crud.select_joined(page)
