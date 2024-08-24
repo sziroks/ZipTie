@@ -102,4 +102,4 @@ The second thing I'd change if I had more free time is proper config file. For n
 
 The last thing that is to change is to add logger. For now there is no logger to this API (except default uvicorn logger). Adding custom logger would allow for easier debuging and real time information about application state and request-response operations.
 
-Why i didn't implement these thing? Free time is a comodity and I'd rather spend it working on my own things :D. Right now I'm starting the process of designing and building my own robot, so theres lots of things that I need to take care of. 
+Why i didn't implement these things? Free time is a comodity and I'd rather spend it working on my own things :D. Right now I'm starting the process of designing and building my own robot, so theres lots of things that I need to take care of. 
